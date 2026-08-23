@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Instagram Templates — OC Foundry</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css?v=20" />
+    <style>
+      body {
+        background: #111115;
+        color: #fff;
+        padding: 40px 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 50px;
+        font-family: "DM Sans", sans-serif;
+      }
+
+      h2.section-title {
+        font: 700 24px "DM Mono", monospace;
+        letter-spacing: 2px;
+        color: var(--coral);
+        text-transform: uppercase;
+        margin: 0;
+      }
+
+      .template-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+        justify-content: center;
+      }
+
+      /* Instagram Square Posts (600px x 600px) */
+      .ig-post {
+        width: 600px;
+        height: 600px;
+        border-radius: 20px;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 40px;
+        box-sizing: border-box;
+      }
+
+      /* PROFILE PICTURE TEMPLATE (500px x 500px) */
+      .pfp-box {
+        width: 500px;
+        height: 500px;
+        border-radius: 50%;
+        background: #fffaf5;
+        border: 12px solid #f3eefc;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+      }
+
+      .pfp-mark {
+        font: 700 220px/1 Fraunces, serif;
+        color: var(--coral);
+      }
+
+      /* POST 1: INTRO */
+      .post-intro {
+        background: linear-gradient(135deg, #fffaf5 0%, #f3eefc 50%, #fce9e6 100%);
+        color: var(--ink);
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .post-intro h1 {
+        font: 700 56px/1.02 Fraunces, serif;
+        letter-spacing: -2.5px;
+        margin: 20px 0 16px;
+      }
+
+      .post-intro h1 em {
+        color: var(--lavender);
+        font-style: italic;
+      }
+
+      /* POST 2: FANTASY SPOTLIGHT */
+      .post-fantasy {
+        background: linear-gradient(180deg, rgba(20, 10, 30, 0.3) 0%, rgba(20, 10, 30, 0.88) 100%),
+                    url('images/fantasy/hero.png') center/cover;
+        color: #fff;
+      }
+
+      /* POST 3: DND SPOTLIGHT */
+      .post-dnd {
+        background: linear-gradient(180deg, rgba(15, 12, 20, 0.4) 0%, rgba(15, 12, 20, 0.9) 100%),
+                    url('images/horror/hero.png') center/cover;
+        color: #fff;
+      }
+
+      /* HIGHLIGHT COVERS */
+      .highlight-box {
+        width: 260px;
+        height: 260px;
+        border-radius: 50%;
+        background: #fffdf9;
+        border: 6px solid var(--lavender);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: var(--ink);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+      }
+
+      .highlight-icon {
+        font-size: 72px;
+        margin-bottom: 8px;
+      }
+
+      .highlight-title {
+        font: 700 16px "DM Mono", monospace;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: var(--coral);
+      }
+
+      /* COMMON CARD COMPONENTS */
+      .card-tag {
+        display: inline-block;
+        padding: 6px 14px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.25);
+        backdrop-filter: blur(8px);
+        font: 500 11px "DM Mono", monospace;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+      }
+
+      .card-sheet {
+        background: rgba(255, 253, 249, 0.94);
+        color: #312b3d;
+        border-radius: 16px;
+        padding: 24px;
+        backdrop-filter: blur(10px);
+      }
+
+      .card-sheet h3 {
+        margin: 0 0 4px;
+        font: 700 32px Fraunces, serif;
+        letter-spacing: -1px;
+      }
+
+      .card-sheet .meta {
+        color: var(--coral);
+        font: 500 11px "DM Mono", monospace;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        margin-bottom: 12px;
+      }
+
+      .card-sheet p {
+        margin: 0;
+        font: 600 16px/1.45 Fraunces, serif;
+        color: #594f61;
+        font-style: italic;
+      }
+
+      .dnd-stats-row {
+        display: flex;
+        gap: 6px;
+        margin: 12px 0;
+      }
+
+      .mini-stat {
+        flex: 1;
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        padding: 4px;
+        text-align: center;
+      }
+
+      .mini-stat span {
+        display: block;
+        font: 700 9px "DM Mono", monospace;
+        color: var(--coral);
+      }
+
+      .mini-stat strong {
+        font: 700 11px "DM Sans", sans-serif;
+        color: var(--ink);
+      }
+
+      .swatch-mini {
+        display: flex;
+        gap: 8px;
+        margin-top: 12px;
+      }
+
+      .swatch-mini span {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        border: 2px solid #fff;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+      }
+    </style>
+  </head>
+  <body>
+
+    <!-- SECTION 1: PROFILE PICTURE -->
+    <h2 class="section-title">1. Instagram Profile Picture</h2>
+    <div class="pfp-box">
+      <div class="pfp-mark">✦</div>
+    </div>
+
+    <!-- SECTION 2: GRID POSTS -->
+    <h2 class="section-title">2. First 3 Instagram Posts (1080x1080 Square)</h2>
+    <div class="template-grid">
+
+      <!-- POST 1: INTRO -->
+      <div class="ig-post post-intro">
+        <div style="font-family:Fraunces, serif; font-size:24px; font-weight:700;">
+          <span style="color:var(--coral);">✦</span> OC Foundry
+        </div>
+        <div>
+          <p class="eyebrow" style="justify-content:center;"><span></span> Free Character Spark Machine</p>
+          <h1>Make someone<br /><em>worth drawing.</em></h1>
+          <p style="color:var(--muted); max-width:420px; margin:0 auto; line-height:1.5; font-size:15px;">
+            Instant character ideas for artists, writers &amp; TTRPG players across 6 unique worlds.
+          </p>
+        </div>
+        <div style="font:700 13px 'DM Mono', monospace; color:var(--coral); letter-spacing:1px;">
+          memanasi123.github.io/oc-foundry
+        </div>
+      </div>
+
+      <!-- POST 2: FANTASY SPOTLIGHT -->
+      <div class="ig-post post-fantasy">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <div style="font-family:Fraunces, serif; font-size:20px; font-weight:700;">✦ OC Foundry</div>
+          <span class="card-tag">Fantasy Spotlight</span>
+        </div>
+        <div>
+          <div class="card-sheet">
+            <div class="meta">Moonlit Cartographer · 27 years old</div>
+            <h3>Kestrel Dawn</h3>
+            <p>“They are the only person willing to take the first step into a place everyone else fears.”</p>
+            <div class="swatch-mini">
+              <span style="background:#F43F5E;"></span>
+              <span style="background:#FBBF24;"></span>
+              <span style="background:#38BDF8;"></span>
+              <span style="background:#111827;"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- POST 3: DND SPOTLIGHT -->
+      <div class="ig-post post-dnd">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <div style="font-family:Fraunces, serif; font-size:20px; font-weight:700;">✦ OC Foundry</div>
+          <span class="card-tag" style="background:rgba(221, 128, 110, 0.3);">D&amp;D 5e Hero</span>
+        </div>
+        <div>
+          <div class="card-sheet">
+            <div class="meta" style="color:var(--lavender);">Forest Gnome Sorcerer · Lawful Evil</div>
+            <h3>Zook Glitterstone</h3>
+            <p>“Exiled from their order for reading a forbidden tome of dark magic in the royal archives.”</p>
+            
+            <div class="dnd-stats-row">
+              <div class="mini-stat"><span>STR</span><strong>13 (+1)</strong></div>
+              <div class="mini-stat"><span>DEX</span><strong>14 (+2)</strong></div>
+              <div class="mini-stat"><span>CON</span><strong>8 (-1)</strong></div>
+              <div class="mini-stat"><span>INT</span><strong>10 (+0)</strong></div>
+              <div class="mini-stat"><span>WIS</span><strong>12 (+1)</strong></div>
+              <div class="mini-stat"><span>CHA</span><strong>15 (+2)</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- SECTION 3: HIGHLIGHT COVERS -->
+    <h2 class="section-title">3. Story Highlight Covers</h2>
+    <div class="template-grid">
+      <div class="highlight-box">
+        <span class="highlight-icon">✦</span>
+        <span class="highlight-title">Generators</span>
+      </div>
+      <div class="highlight-box">
+        <span class="highlight-icon">📜</span>
+        <span class="highlight-title">Bibles</span>
+      </div>
+      <div class="highlight-box">
+        <span class="highlight-icon">🎲</span>
+        <span class="highlight-title">D&amp;D 5e</span>
+      </div>
+      <div class="highlight-box">
+        <span class="highlight-icon">🎨</span>
+        <span class="highlight-title">Featured</span>
+      </div>
+    </div>
+
+  </body>
+</html>
