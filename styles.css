@@ -2966,3 +2966,114 @@ span.swatch-code {
     transform: translateY(-2px) !important;
   }
 }
+/* ============================================
+   STANDALONE ROUNDED LEFT TAB BUTTONS
+   ============================================ */
+
+@media (min-width: 1025px) {
+  /* Remove full-page left padding from previous rail version */
+  body {
+    padding-left: 0 !important;
+  }
+
+  .generator-tabs-dock {
+    position: fixed !important;
+    left: 18px !important;
+    top: 110px !important;
+    bottom: auto !important;
+    width: auto !important;
+    height: auto !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+    z-index: 1200 !important;
+    margin: 0 !important;
+    transform: none !important;
+    padding: 0 !important;
+  }
+
+  .gen-tab {
+    width: auto !important;
+    min-width: 48px !important;
+    height: auto !important;
+    min-height: 160px !important;
+    padding: 18px 12px !important;
+    border-radius: 18px !important;
+    border: 1.5px solid var(--line) !important;
+    background: rgba(255, 253, 249, 0.96) !important;
+    color: var(--ink) !important;
+    box-shadow: 0 8px 20px rgba(67, 45, 76, 0.10) !important;
+    writing-mode: vertical-rl !important;
+    transform: rotate(180deg) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 10px !important;
+    text-decoration: none !important;
+    font-weight: 700 !important;
+    font-size: 13px !important;
+    letter-spacing: 0.8px !important;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease, border-color 0.18s ease !important;
+  }
+
+  .gen-tab-icon {
+    font-size: 15px !important;
+    writing-mode: horizontal-tb !important;
+    transform: rotate(180deg) !important;
+    color: var(--coral) !important;
+  }
+
+  .gen-tab:hover {
+    transform: rotate(180deg) translateY(-3px) !important;
+    border-color: var(--lavender) !important;
+    box-shadow: 0 12px 24px rgba(104, 87, 142, 0.16) !important;
+  }
+
+  /* Active selected button */
+  .gen-tab.active {
+    background: var(--lavender) !important;
+    border-color: var(--lavender) !important;
+    color: #fff !important;
+    box-shadow: 0 10px 0 #b7a9dc, 0 16px 28px rgba(104, 87, 142, 0.22) !important;
+  }
+
+  .gen-tab.active .gen-tab-icon {
+    color: #ffe5af !important;
+  }
+}
+
+/* Mobile stays as normal horizontal pills */
+@media (max-width: 1024px) {
+  .generator-tabs-dock {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    width: min(100% - 32px, 520px) !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    margin: 16px auto 10px !important;
+    gap: 8px !important;
+  }
+
+  .gen-tab {
+    min-height: auto !important;
+    writing-mode: horizontal-tb !important;
+    transform: none !important;
+    border-radius: 999px !important;
+    padding: 10px 14px !important;
+    flex: 1 !important;
+  }
+
+  .gen-tab-icon {
+    transform: none !important;
+  }
+
+  .gen-tab:hover {
+    transform: translateY(-2px) !important;
+  }
+}
