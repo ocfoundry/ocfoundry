@@ -2,16 +2,17 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Instagram Templates — OC Foundry</title>
+    <title>Instagram Templates &amp; Downloads — OC Foundry</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css?v=20" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
       body {
         background: #111115;
         color: #fff;
-        padding: 40px 20px;
+        padding: 40px 20px 80px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -25,19 +26,49 @@
         color: var(--coral);
         text-transform: uppercase;
         margin: 0;
+        text-align: center;
+      }
+
+      .template-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .download-btn {
+        padding: 12px 24px;
+        border: 0;
+        border-radius: 10px;
+        background: var(--lavender);
+        color: #fff;
+        font: 700 14px "DM Sans", sans-serif;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(147, 128, 197, 0.4);
+        transition: transform 0.15s ease, background 0.15s ease;
+      }
+
+      .download-btn:hover {
+        transform: translateY(-2px);
+        background: #826ebc;
+      }
+
+      .download-btn:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
       }
 
       .template-grid {
         display: flex;
         flex-wrap: wrap;
-        gap: 30px;
+        gap: 36px;
         justify-content: center;
       }
 
-      /* Instagram Square Posts (600px x 600px) */
+      /* Instagram Square Posts (540px x 540px rendered, exported at 1080x1080) */
       .ig-post {
-        width: 600px;
-        height: 600px;
+        width: 540px;
+        height: 540px;
         border-radius: 20px;
         position: relative;
         overflow: hidden;
@@ -45,14 +76,14 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        padding: 40px;
+        padding: 36px;
         box-sizing: border-box;
       }
 
-      /* PROFILE PICTURE TEMPLATE (500px x 500px) */
+      /* PROFILE PICTURE TEMPLATE */
       .pfp-box {
-        width: 500px;
-        height: 500px;
+        width: 450px;
+        height: 450px;
         border-radius: 50%;
         background: #fffaf5;
         border: 12px solid #f3eefc;
@@ -60,10 +91,11 @@
         align-items: center;
         justify-content: center;
         box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        box-sizing: border-box;
       }
 
       .pfp-mark {
-        font: 700 220px/1 Fraunces, serif;
+        font: 700 200px/1 Fraunces, serif;
         color: var(--coral);
       }
 
@@ -77,9 +109,9 @@
       }
 
       .post-intro h1 {
-        font: 700 56px/1.02 Fraunces, serif;
-        letter-spacing: -2.5px;
-        margin: 20px 0 16px;
+        font: 700 48px/1.02 Fraunces, serif;
+        letter-spacing: -2px;
+        margin: 18px 0 14px;
       }
 
       .post-intro h1 em {
@@ -103,8 +135,8 @@
 
       /* HIGHLIGHT COVERS */
       .highlight-box {
-        width: 260px;
-        height: 260px;
+        width: 240px;
+        height: 240px;
         border-radius: 50%;
         background: #fffdf9;
         border: 6px solid var(--lavender);
@@ -114,24 +146,25 @@
         justify-content: center;
         color: var(--ink);
         box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+        box-sizing: border-box;
       }
 
       .highlight-icon {
-        font-size: 72px;
-        margin-bottom: 8px;
+        font-size: 64px;
+        margin-bottom: 6px;
       }
 
       .highlight-title {
-        font: 700 16px "DM Mono", monospace;
+        font: 700 15px "DM Mono", monospace;
         letter-spacing: 1px;
         text-transform: uppercase;
         color: var(--coral);
       }
 
-      /* COMMON CARD COMPONENTS */
+      /* CARD COMPONENTS */
       .card-tag {
         display: inline-block;
-        padding: 6px 14px;
+        padding: 5px 12px;
         border-radius: 999px;
         background: rgba(255, 255, 255, 0.25);
         backdrop-filter: blur(8px);
@@ -144,13 +177,13 @@
         background: rgba(255, 253, 249, 0.94);
         color: #312b3d;
         border-radius: 16px;
-        padding: 24px;
+        padding: 22px;
         backdrop-filter: blur(10px);
       }
 
       .card-sheet h3 {
         margin: 0 0 4px;
-        font: 700 32px Fraunces, serif;
+        font: 700 28px Fraunces, serif;
         letter-spacing: -1px;
       }
 
@@ -159,12 +192,12 @@
         font: 500 11px "DM Mono", monospace;
         letter-spacing: 1px;
         text-transform: uppercase;
-        margin-bottom: 12px;
+        margin-bottom: 10px;
       }
 
       .card-sheet p {
         margin: 0;
-        font: 600 16px/1.45 Fraunces, serif;
+        font: 600 15px/1.4 Fraunces, serif;
         color: #594f61;
         font-style: italic;
       }
@@ -172,7 +205,7 @@
       .dnd-stats-row {
         display: flex;
         gap: 6px;
-        margin: 12px 0;
+        margin: 12px 0 0;
       }
 
       .mini-stat {
@@ -202,8 +235,8 @@
       }
 
       .swatch-mini span {
-        width: 22px;
-        height: 22px;
+        width: 20px;
+        height: 20px;
         border-radius: 50%;
         border: 2px solid #fff;
         box-shadow: 0 2px 5px rgba(0,0,0,0.15);
@@ -213,75 +246,87 @@
   <body>
 
     <!-- SECTION 1: PROFILE PICTURE -->
-    <h2 class="section-title">1. Instagram Profile Picture</h2>
-    <div class="pfp-box">
-      <div class="pfp-mark">✦</div>
+    <h2 class="section-title">1. Profile Picture</h2>
+    <div class="template-wrapper">
+      <div class="pfp-box" id="pfp-target">
+        <div class="pfp-mark">✦</div>
+      </div>
+      <button class="download-btn" onclick="downloadGraphic('pfp-target', 'ocfoundry-pfp.png')">Download Profile Picture 💾</button>
     </div>
 
     <!-- SECTION 2: GRID POSTS -->
-    <h2 class="section-title">2. First 3 Instagram Posts (1080x1080 Square)</h2>
+    <h2 class="section-title">2. First 3 Grid Posts</h2>
     <div class="template-grid">
 
       <!-- POST 1: INTRO -->
-      <div class="ig-post post-intro">
-        <div style="font-family:Fraunces, serif; font-size:24px; font-weight:700;">
-          <span style="color:var(--coral);">✦</span> OC Foundry
+      <div class="template-wrapper">
+        <div class="ig-post post-intro" id="post1-target">
+          <div style="font-family:Fraunces, serif; font-size:22px; font-weight:700;">
+            <span style="color:var(--coral);">✦</span> OC Foundry
+          </div>
+          <div>
+            <p class="eyebrow" style="justify-content:center;"><span></span> Free Character Spark Machine</p>
+            <h1>Make someone<br /><em>worth drawing.</em></h1>
+            <p style="color:var(--muted); max-width:380px; margin:0 auto; line-height:1.5; font-size:14px;">
+              Instant character ideas for artists, writers &amp; TTRPG players across 6 unique worlds.
+            </p>
+          </div>
+          <div style="font:700 12px 'DM Mono', monospace; color:var(--coral); letter-spacing:1px;">
+            ocfoundry.github.io/ocfoundry
+          </div>
         </div>
-        <div>
-          <p class="eyebrow" style="justify-content:center;"><span></span> Free Character Spark Machine</p>
-          <h1>Make someone<br /><em>worth drawing.</em></h1>
-          <p style="color:var(--muted); max-width:420px; margin:0 auto; line-height:1.5; font-size:15px;">
-            Instant character ideas for artists, writers &amp; TTRPG players across 6 unique worlds.
-          </p>
-        </div>
-        <div style="font:700 13px 'DM Mono', monospace; color:var(--coral); letter-spacing:1px;">
-          memanasi123.github.io/oc-foundry
-        </div>
+        <button class="download-btn" onclick="downloadGraphic('post1-target', 'post1-intro.png')">Download Post 1 PNG 💾</button>
       </div>
 
       <!-- POST 2: FANTASY SPOTLIGHT -->
-      <div class="ig-post post-fantasy">
-        <div style="display:flex; justify-content:space-between; align-items:center;">
-          <div style="font-family:Fraunces, serif; font-size:20px; font-weight:700;">✦ OC Foundry</div>
-          <span class="card-tag">Fantasy Spotlight</span>
-        </div>
-        <div>
-          <div class="card-sheet">
-            <div class="meta">Moonlit Cartographer · 27 years old</div>
-            <h3>Kestrel Dawn</h3>
-            <p>“They are the only person willing to take the first step into a place everyone else fears.”</p>
-            <div class="swatch-mini">
-              <span style="background:#F43F5E;"></span>
-              <span style="background:#FBBF24;"></span>
-              <span style="background:#38BDF8;"></span>
-              <span style="background:#111827;"></span>
+      <div class="template-wrapper">
+        <div class="ig-post post-fantasy" id="post2-target">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div style="font-family:Fraunces, serif; font-size:20px; font-weight:700;">✦ OC Foundry</div>
+            <span class="card-tag">Fantasy Spotlight</span>
+          </div>
+          <div>
+            <div class="card-sheet">
+              <div class="meta">Moonlit Cartographer · 27 years old</div>
+              <h3>Kestrel Dawn</h3>
+              <p>“They are the only person willing to take the first step into a place everyone else fears.”</p>
+              <div class="swatch-mini">
+                <span style="background:#F43F5E;"></span>
+                <span style="background:#FBBF24;"></span>
+                <span style="background:#38BDF8;"></span>
+                <span style="background:#111827;"></span>
+              </div>
             </div>
           </div>
         </div>
+        <button class="download-btn" onclick="downloadGraphic('post2-target', 'post2-fantasy.png')">Download Post 2 PNG 💾</button>
       </div>
 
       <!-- POST 3: DND SPOTLIGHT -->
-      <div class="ig-post post-dnd">
-        <div style="display:flex; justify-content:space-between; align-items:center;">
-          <div style="font-family:Fraunces, serif; font-size:20px; font-weight:700;">✦ OC Foundry</div>
-          <span class="card-tag" style="background:rgba(221, 128, 110, 0.3);">D&amp;D 5e Hero</span>
-        </div>
-        <div>
-          <div class="card-sheet">
-            <div class="meta" style="color:var(--lavender);">Forest Gnome Sorcerer · Lawful Evil</div>
-            <h3>Zook Glitterstone</h3>
-            <p>“Exiled from their order for reading a forbidden tome of dark magic in the royal archives.”</p>
-            
-            <div class="dnd-stats-row">
-              <div class="mini-stat"><span>STR</span><strong>13 (+1)</strong></div>
-              <div class="mini-stat"><span>DEX</span><strong>14 (+2)</strong></div>
-              <div class="mini-stat"><span>CON</span><strong>8 (-1)</strong></div>
-              <div class="mini-stat"><span>INT</span><strong>10 (+0)</strong></div>
-              <div class="mini-stat"><span>WIS</span><strong>12 (+1)</strong></div>
-              <div class="mini-stat"><span>CHA</span><strong>15 (+2)</strong></div>
+      <div class="template-wrapper">
+        <div class="ig-post post-dnd" id="post3-target">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div style="font-family:Fraunces, serif; font-size:20px; font-weight:700;">✦ OC Foundry</div>
+            <span class="card-tag" style="background:rgba(221, 128, 110, 0.3);">D&amp;D 5e Hero</span>
+          </div>
+          <div>
+            <div class="card-sheet">
+              <div class="meta" style="color:var(--lavender);">Forest Gnome Sorcerer · Lawful Evil</div>
+              <h3>Zook Glitterstone</h3>
+              <p>“Exiled from their order for reading a forbidden tome of dark magic in the royal archives.”</p>
+              
+              <div class="dnd-stats-row">
+                <div class="mini-stat"><span>STR</span><strong>13 (+1)</strong></div>
+                <div class="mini-stat"><span>DEX</span><strong>14 (+2)</strong></div>
+                <div class="mini-stat"><span>CON</span><strong>8 (-1)</strong></div>
+                <div class="mini-stat"><span>INT</span><strong>10 (+0)</strong></div>
+                <div class="mini-stat"><span>WIS</span><strong>12 (+1)</strong></div>
+                <div class="mini-stat"><span>CHA</span><strong>15 (+2)</strong></div>
+              </div>
             </div>
           </div>
         </div>
+        <button class="download-btn" onclick="downloadGraphic('post3-target', 'post3-dnd.png')">Download Post 3 PNG 💾</button>
       </div>
 
     </div>
@@ -289,23 +334,80 @@
     <!-- SECTION 3: HIGHLIGHT COVERS -->
     <h2 class="section-title">3. Story Highlight Covers</h2>
     <div class="template-grid">
-      <div class="highlight-box">
-        <span class="highlight-icon">✦</span>
-        <span class="highlight-title">Generators</span>
+
+      <div class="template-wrapper">
+        <div class="highlight-box" id="hl1-target">
+          <span class="highlight-icon">✦</span>
+          <span class="highlight-title">Generators</span>
+        </div>
+        <button class="download-btn" onclick="downloadGraphic('hl1-target', 'highlight-generators.png')">Download 💾</button>
       </div>
-      <div class="highlight-box">
-        <span class="highlight-icon">📜</span>
-        <span class="highlight-title">Bibles</span>
+
+      <div class="template-wrapper">
+        <div class="highlight-box" id="hl2-target">
+          <span class="highlight-icon">📜</span>
+          <span class="highlight-title">Bibles</span>
+        </div>
+        <button class="download-btn" onclick="downloadGraphic('hl2-target', 'highlight-bibles.png')">Download 💾</button>
       </div>
-      <div class="highlight-box">
-        <span class="highlight-icon">🎲</span>
-        <span class="highlight-title">D&amp;D 5e</span>
+
+      <div class="template-wrapper">
+        <div class="highlight-box" id="hl3-target">
+          <span class="highlight-icon">🎲</span>
+          <span class="highlight-title">D&amp;D 5e</span>
+        </div>
+        <button class="download-btn" onclick="downloadGraphic('hl3-target', 'highlight-dnd.png')">Download 💾</button>
       </div>
-      <div class="highlight-box">
-        <span class="highlight-icon">🎨</span>
-        <span class="highlight-title">Featured</span>
+
+      <div class="template-wrapper">
+        <div class="highlight-box" id="hl4-target">
+          <span class="highlight-icon">🎨</span>
+          <span class="highlight-title">Featured</span>
+        </div>
+        <button class="download-btn" onclick="downloadGraphic('hl4-target', 'highlight-featured.png')">Download 💾</button>
       </div>
+
     </div>
 
+    <script>
+      async function downloadGraphic(targetId, filename) {
+        const element = document.getElementById(targetId);
+        if (!element) return;
+
+        const btn = event.currentTarget;
+        const originalText = btn.textContent;
+        btn.disabled = true;
+        btn.textContent = "Rendering... ✨";
+
+        try {
+          const canvas = await html2canvas(element, {
+            scale: 2, // Export at 2x high resolution
+            useCORS: true,
+            allowTaint: true,
+            backgroundColor: null,
+            logging: false
+          });
+
+          const link = document.createElement("a");
+          link.download = filename;
+          link.href = canvas.toDataURL("image/png");
+          link.click();
+
+          btn.textContent = "Downloaded! ✓";
+          setTimeout(() => {
+            btn.disabled = false;
+            btn.textContent = originalText;
+          }, 2000);
+
+        } catch (err) {
+          console.error("Export error:", err);
+          btn.textContent = "Error - Try screenshot";
+          setTimeout(() => {
+            btn.disabled = false;
+            btn.textContent = originalText;
+          }, 3000);
+        }
+      }
+    </script>
   </body>
 </html>
