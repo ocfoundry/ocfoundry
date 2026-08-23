@@ -250,19 +250,80 @@ if (rerollBtn) {
 }
 
 // Bucket
+// ============================================
+// BUCKET / CART (same rules as OC generator)
+// ============================================
+function getCart() {
+  try {
+    return JSON.parse(localStorage.getItem("ocFoundryCart") || "[]");
+  } catch (e) {
+    return [];
+  }
+}
+
+function saveCart(cart) {
+  localStorage.setItem("ocFoundryCart", JSON.stringify(cart));
+  updateCartBadge();
+}
+
+function updateCartBadge() {
+  const badge = document.getElementById("cart-count");
+  if (!badge) return;
+  const count = getCart().length;
+  badge.textContent = count;
+  badge.hidden = count === 0;
+}
+
+function addToCart(character) {
+  if (!character) return { ok: false, reason: "No character" };
+
+  const cart = getCart();
+
+  // Block exact duplicates (same as OC generator)
+  const alreadyInCart = cart.some(item =>
+    item.name === character.name &&
+    item.archetype === character.archetype &&
+    item.hook === character.hook
+  );
+
+  if (alreadyInCart) {
+    return { ok: false, reason: "Already in bucket" };
+  }
+
+  if (cart.length >= 10) {
+    return { ok: false, reason: "Bucket full (max 10)" };
+  }
+
+  cart.push({
+    ...character,
+    cartId: `${Date.now()}_${Math.random().toString(36).slice(2, 8)}`
+  });
+
+  saveCart(cart);
+  return { ok: true, count: cart.length };
+}
+
 const addBucketBtn = document.getElementById("add-to-bucket");
 if (addBucketBtn) {
   addBucketBtn.addEventListener("click", () => {
     if (!currentDndCharacter) return;
-    const cart = JSON.parse(localStorage.getItem("ocFoundryCart") || "[]");
-    cart.push({
-      ...currentDndCharacter,
-      cartId: `${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
-    });
-    localStorage.setItem("ocFoundryCart", JSON.stringify(cart));
-    addBucketBtn.textContent = "Added to Bucket ✓";
+
+    // Keep latest character saved
+    localStorage.setItem("ocFoundryCharacter", JSON.stringify(currentDndCharacter));
+
+    const result = addToCart(currentDndCharacter);
+
+    if (result.ok) {
+      addBucketBtn.textContent = `Added ✓ (${result.count})`;
+    } else {
+      addBucketBtn.textContent = result.reason;
+    }
+
     setTimeout(() => {
       addBucketBtn.textContent = "Add to bucket";
-    }, 1500);
+    }, 1600);
   });
 }
+
+// Show current bucket count on page load
+updateCartBadge();
