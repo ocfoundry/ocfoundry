@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ocfoundry.github.io/oc-foundry/sitemap.xml
+Sitemap: https://ocfoundry.github.io/ocfoundry/sitemap.xml
