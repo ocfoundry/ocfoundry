@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Download Instagram Reel Video — OC Foundry</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@500;700&family=DM+Sans:wght@500;700&family=Fraunces:ital,wght@0,700;1,500;1,700&display=swap" rel="stylesheet" />
+    <style>
+      body {
+        background: #0d0b14;
+        color: #fff;
+        font-family: "DM Sans", sans-serif;
+        margin: 0;
+        padding: 40px 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+        min-height: 100vh;
+        box-sizing: border-box;
+      }
+
+      h1 {
+        font: 700 28px/1.1 Fraunces, serif;
+        margin: 0;
+        color: #fffdf9;
+        text-align: center;
+      }
+
+      p.sub {
+        margin: 0;
+        color: #a49ba8;
+        font-size: 15px;
+        text-align: center;
+      }
+
+      /* Preview Canvas Container */
+      .canvas-wrap {
+        width: 360px;
+        height: 640px;
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 0 2px rgba(255, 255, 255, 0.15);
+      }
+
+      canvas {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+
+      .btn-download {
+        padding: 16px 36px;
+        border: 0;
+        border-radius: 14px;
+        background: #9380c5;
+        color: #fff;
+        font: 700 16px "DM Sans", sans-serif;
+        cursor: pointer;
+        box-shadow: 0 8px 25px rgba(147, 128, 197, 0.4);
+        transition: transform 0.15s ease, background 0.15s ease;
+      }
+
+      .btn-download:hover {
+        transform: translateY(-2px);
+        background: #826ebc;
+      }
+
+      .btn-download:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+
+      .status-text {
+        font: 500 14px "DM Mono", monospace;
+        color: #f4c9b5;
+        min-height: 20px;
+      }
+    </style>
+  </head>
+  <body>
+
+    <h1>1-Click Instagram Reel Video Exporter 🎬</h1>
+    <p class="sub">Click the button below to export a 1080×1920 HD video file directly to your device.</p>
+
+    <div class="canvas-wrap">
+      <canvas id="reelCanvas" width="1080" height="1920"></canvas>
+    </div>
+
+    <button class="btn-download" id="exportBtn" onclick="generateAndDownloadVideo()">Download Reel Video File 🎬</button>
+    <div class="status-text" id="statusMsg">Ready to export.</div>
+
+    <script>
+      const canvas = document.getElementById("reelCanvas");
+      const ctx = canvas.getContext("2d");
+      const statusMsg = document.getElementById("statusMsg");
+      const exportBtn = document.getElementById("exportBtn");
+
+      // Preload assets
+      const heroImg = new Image();
+      heroImg.crossOrigin = "anonymous";
+      heroImg.src = "images/fantasy/hero.png";
+
+      let animationFrameId;
+
+      async function drawFrame(progress) {
+        // Clear
+        ctx.fillStyle = "#0c0816";
+        ctx.fillRect(0, 0, 1080, 1920);
+
+        // 1. Draw Hero Background Image
+        if (heroImg.complete && heroImg.naturalWidth > 0) {
+          ctx.save();
+          ctx.globalAlpha = 0.55;
+          ctx.drawImage(heroImg, 0, 0, 1080, 1920);
+          ctx.restore();
+        }
+
+        // 2. Dark Overlay Gradient
+        const grad = ctx.createLinearGradient(0, 0, 0, 1920);
+        grad.addColorStop(0, "rgba(12, 8, 22, 0.4)");
+        grad.addColorStop(0.5, "rgba(12, 8, 22, 0.7)");
+        grad.addColorStop(1, "rgba(12, 8, 22, 0.95)");
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, 1080, 1920);
+
+        // 3. Header Brand
+        ctx.fillStyle = "#dd806e";
+        ctx.font = "700 48px 'Fraunces', serif";
+        ctx.textAlign = "center";
+        ctx.fillText("✦ OC Foundry", 540, 180);
+
+        // 4. Hook Text (Fade in)
+        ctx.fillStyle = "#ffffff";
+        ctx.font = "700 68px 'Fraunces', serif";
+        ctx.fillText("POV: You need an OC idea", 540, 320);
+        
+        ctx.fillStyle = "#f4c9b5";
+        ctx.font = "italic 700 68px 'Fraunces', serif";
+        ctx.fillText("in 5 seconds...", 540, 400);
+
+        // 5. Button Pulse (Progress 0 to 0.4)
+        const btnScale = 1 + Math.sin(progress * Math.PI * 6) * 0.03;
+        ctx.save();
+        ctx.translate(540, 560);
+        ctx.scale(btnScale, btnScale);
+        
+        // Button Shadow
+        ctx.fillStyle = "rgba(147, 128, 197, 0.4)";
+        ctx.beginPath();
+        ctx.roundRect(-260, -45, 520, 90, 24);
+        ctx.fill();
+
+        // Button Body
+        ctx.fillStyle = "#9380c5";
+        ctx.beginPath();
+        ctx.roundRect(-250, -45, 500, 90, 20);
+        ctx.fill();
+
+        ctx.fillStyle = "#ffffff";
+        ctx.font = "700 36px 'DM Sans', sans-serif";
+        ctx.fillText("✦ Generating Character...", 0, 12);
+        ctx.restore();
+
+        // 6. Character Card Slide Up (Progress 0.35 to 1.0)
+        if (progress > 0.35) {
+          const cardProgress = Math.min(1, (progress - 0.35) / 0.3);
+          // Ease out cubic
+          const easeY = 1 - Math.pow(1 - cardProgress, 3);
+          const cardY = 1350 - easeY * 550; // Slide from 1350 to 800
+
+          ctx.save();
+          ctx.globalAlpha = Math.min(1, cardProgress * 1.5);
+          
+          // Card Shadow
+          ctx.fillStyle = "rgba(0,0,0,0.5)";
+          ctx.beginPath();
+          ctx.roundRect(100 + 10, cardY + 10, 880, 580, 36);
+          ctx.fill();
+
+          // Card Background
+          ctx.fillStyle = "#fffdf9";
+          ctx.beginPath();
+          ctx.roundRect(100, cardY, 880, 580, 36);
+          ctx.fill();
+
+          // Card Content
+          ctx.fillStyle = "#dd806e";
+          ctx.font = "700 28px 'DM Mono', monospace";
+          ctx.textAlign = "left";
+          ctx.fillText("MOONLIT CARTOGRAPHER · 27 YRS", 160, cardY + 80);
+
+          ctx.fillStyle = "#312b3d";
+          ctx.font = "700 72px 'Fraunces', serif";
+          ctx.fillText("Elowen Voss", 160, cardY + 170);
+
+          ctx.fillStyle = "#594f61";
+          ctx.font = "italic 600 36px 'Fraunces', serif";
+          
+          // Wrap quote text
+          ctx.fillText("“They map places that only exist when no one", 160, cardY + 260);
+          ctx.fillText("is looking. Their latest chart has begun redrawing", 160, cardY + 315);
+          ctx.fillText("the route to their childhood home.”", 160, cardY + 370);
+
+          // Swatches
+          const colors = ["#F43F5E", "#FBBF24", "#38BDF8", "#111827"];
+          colors.forEach((c, idx) => {
+            ctx.fillStyle = c;
+            ctx.beginPath();
+            ctx.arc(180 + idx * 70, cardY + 470, 24, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.strokeStyle = "#ffffff";
+            ctx.lineWidth = 4;
+            ctx.stroke();
+          });
+
+          ctx.restore();
+        }
+
+        // 7. Footer CTA Badge (Fade in at 0.6)
+        if (progress > 0.6) {
+          const footerAlpha = Math.min(1, (progress - 0.6) / 0.2);
+          ctx.save();
+          ctx.globalAlpha = footerAlpha;
+
+          ctx.fillStyle = "rgba(255, 255, 255, 0.15)";
+          ctx.beginPath();
+          ctx.roundRect(180, 1620, 720, 100, 50);
+          ctx.fill();
+
+          ctx.strokeStyle = "rgba(255, 255, 255, 0.3)";
+          ctx.lineWidth = 2;
+          ctx.stroke();
+
+          ctx.fillStyle = "#ffffff";
+          ctx.font = "700 32px 'DM Mono', monospace";
+          ctx.textAlign = "center";
+          ctx.fillText("FREE GENERATOR · LINK IN BIO ✦", 540, 1682);
+          ctx.restore();
+        }
+      }
+
+      // Preview Loop
+      function startPreviewLoop() {
+        let startTime = null;
+        const duration = 6000; // 6 seconds
+
+        function loop(timestamp) {
+          if (!startTime) startTime = timestamp;
+          const elapsed = (timestamp - startTime) % duration;
+          const progress = elapsed / duration;
+          
+          drawFrame(progress);
+          animationFrameId = requestAnimationFrame(loop);
+        }
+
+        animationFrameId = requestAnimationFrame(loop);
+      }
+
+      // Initialize Preview after fonts load
+      document.fonts.ready.then(() => {
+        heroImg.onload = () => {
+          startPreviewLoop();
+        };
+        if (heroImg.complete) {
+          startPreviewLoop();
+        }
+      });
+
+      // Export & Download Video Function
+      async function generateAndDownloadVideo() {
+        cancelAnimationFrame(animationFrameId);
+        exportBtn.disabled = true;
+        statusMsg.textContent = "Rendering video file... Please wait ✨";
+
+        const stream = canvas.captureStream(60); // 60 FPS
+        
+        let mimeType = "video/webm";
+        if (MediaRecorder.isTypeSupported("video/mp4;codecs=h264")) {
+          mimeType = "video/mp4;codecs=h264";
+        } else if (MediaRecorder.isTypeSupported("video/mp4")) {
+          mimeType = "video/mp4";
+        }
+
+        const mediaRecorder = new MediaRecorder(stream, {
+          mimeType: mimeType,
+          videoBitsPerSecond: 8000000 // 8 Mbps high quality
+        });
+
+        const chunks = [];
+        mediaRecorder.ondataavailable = (e) => {
+          if (e.data.size > 0) chunks.push(e.data);
+        };
+
+        mediaRecorder.onstop = () => {
+          const blob = new Blob(chunks, { type: mimeType });
+          const url = URL.createObjectURL(blob);
+          
+          const ext = mimeType.includes("mp4") ? "mp4" : "webm";
+          const a = document.createElement("a");
+          a.href = url;
+          a.download = `ocfoundry-reel.${ext}`;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+
+          statusMsg.textContent = "Video file downloaded! 🎬 Check your Downloads folder.";
+          exportBtn.disabled = false;
+          startPreviewLoop(); // Resume loop
+        };
+
+        // Record exactly 6 seconds of animation
+        mediaRecorder.start();
+        const startTime = performance.now();
+        const duration = 6000;
+
+        function recordFrame(now) {
+          const elapsed = now - startTime;
+          const progress = Math.min(1, elapsed / duration);
+
+          drawFrame(progress);
+
+          if (elapsed < duration) {
+            requestAnimationFrame(recordFrame);
+          } else {
+            mediaRecorder.stop();
+          }
+        }
+
+        requestAnimationFrame(recordFrame);
+      }
+    </script>
+  </body>
+</html>
