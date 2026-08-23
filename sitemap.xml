@@ -1,27 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://memanasi123.github.io/oc-foundry/</loc>
+    <loc>https://ocfoundry.github.io/oc-foundry/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://memanasi123.github.io/oc-foundry/about.html</loc>
+    <loc>https://ocfoundry.github.io/oc-foundry/dnd.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://ocfoundry.github.io/oc-foundry/about.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://memanasi123.github.io/oc-foundry/contact.html</loc>
+    <loc>https://ocfoundry.github.io/oc-foundry/contact.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://memanasi123.github.io/oc-foundry/privacy.html</loc>
+    <loc>https://ocfoundry.github.io/oc-foundry/privacy.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://memanasi123.github.io/oc-foundry/terms.html</loc>
+    <loc>https://ocfoundry.github.io/oc-foundry/terms.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
